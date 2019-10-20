@@ -120,7 +120,7 @@ void check()
 	
 int main() 
 { 
-	printf("GRAMMAR is E+T/T \n T*F/F \n (E)/id \n");	 
+	printf("GRAMMAR is E->E+T/T \n T->T*F/F \n F->(E)/id \n");	 
 	
 	
 	printf("Enter the input");
