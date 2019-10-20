@@ -54,7 +54,7 @@ void check()
             printf("%sT*F", ac); 
             stk[z]='T'; 
             stk[z + 1]='\0'; 
-            stk[z + 1]='\0'; 
+            stk[z + 2]='\0'; 
             printf("\n$%s\t%s$\t", stk, str); 
             i = i - 2; 
         } 
