@@ -11,7 +11,72 @@ char str[16], ac[20], stk[15], act[10];
 
 
 void check() 
-{ 
+{ strcpy(ac,"REDUCE TO E -> ");   
+    for(z = 0; z < c - 2; z++) 
+    { 
+        //checking for another production 
+        if(stk[z] == 'E' && stk[z + 1] == '+' &&  
+                                stk[z + 2] == 'T')  
+        { 
+            printf("%s", ac); 
+            stk[z] = 'E'; 
+            stk[z + 1] = '\0'; 
+            stk[z + 2] = '\0'; 
+            printf("\n$%s\t%s$\t", stk, str); 
+            i = i - 2; 
+        } 
+        
+          
+    }
+     
+	  for(z = 0; z < c; z++)  
+    { 
+        //checking for producing rule E->4 
+        if(stk[z] == 'T')  
+        { 
+            printf("%sT", ac); 
+            stk[z] = 'E'; 
+            stk[z + 1] = '\0'; 
+              
+            //pinting action 
+            printf("\n$%s\t%s$\t", stk, str); 
+        
+        } 
+    } 
+     
+    strcpy(ac,"REDUCE TO T -> "); 
+      for(z=0; z<c-2; z++) 
+    { 
+         
+        if(stk[z] == 'T' && stk[z + 1] == '*' &&  
+                                stk[z + 2] == 'F')  
+        { 
+            printf("%sT*F", ac); 
+            stk[z]='T'; 
+            stk[z + 1]='\0'; 
+            stk[z + 1]='\0'; 
+            printf("\n$%s\t%s$\t", stk, str); 
+            i = i - 2; 
+        } 
+        
+    } 
+	
+      for(z = 0; z < c; z++)  
+    { 
+       
+        if(stk[z] == 'F')  
+        { 
+            printf("%sF", ac); 
+            stk[z] = 'T'; 
+            stk[z + 1] = '\0'; 
+              
+            
+            printf("\n$%s\t%s$\t", stk, str);  
+        } 
+        
+    }   
+    
+    
 	 strcpy(ac,"REDUCE TO F -> ");
       for(z = 0; z < c; z++)  
     { 
@@ -24,7 +89,7 @@ void check()
               
             
             printf("\n$%s\t%s$\t", stk, str); 
-            break; 
+            
         } 
        
     }
@@ -38,75 +103,15 @@ void check()
             printf("%s(E)", ac); 
             stk[z]='F'; 
             stk[z + 1]='\0'; 
-            stk[z + 1]='\0'; 
+            stk[z + 2]='\0'; 
             printf("\n$%s\t%s$\t", stk, str); 
             i = i - 2; 
         } 
-        break;
+        
     }   
-     strcpy(ac,"REDUCE TO T -> "); 
-     
-      for(z = 0; z < c; z++)  
-    { 
-       
-        if(stk[z] == 'F')  
-        { 
-            printf("%sF", ac); 
-            stk[z] = 'T'; 
-            stk[z + 1] = '\0'; 
-              
-            
-            printf("\n$%s\t%s$\t", stk, str);  
-        } 
-        break;
-    }   
-    
-     for(z=0; z<c-2; z++) 
-    { 
-         
-        if(stk[z] == 'T' && stk[z + 1] == '*' &&  
-                                stk[z + 2] == 'F')  
-        { 
-            printf("%sT*F", ac); 
-            stk[z]='T'; 
-            stk[z + 1]='\0'; 
-            stk[z + 1]='\0'; 
-            printf("\n$%s\t%s$\t", stk, str); 
-            i = i - 2; 
-        } 
-        break;
-    } 
-	 strcpy(ac,"REDUCE TO E -> ");   
-	  for(z = 0; z < c; z++)  
-    { 
-        //checking for producing rule E->4 
-        if(stk[z] == 'T')  
-        { 
-            printf("%sT", ac); 
-            stk[z] = 'E'; 
-            stk[z + 1] = '\0'; 
-              
-            //pinting action 
-            printf("\n$%s\t%s$\t", stk, str); 
-            break; 
-        } 
-    } 
-     for(z = 0; z < c - 2; z++) 
-    { 
-        //checking for another production 
-        if(stk[z] == 'E' && stk[z + 1] == '+' &&  
-                                stk[z + 2] == 'T')  
-        { 
-            printf("%s", ac); 
-            stk[z] = 'E'; 
-            stk[z + 1] = '\0'; 
-            stk[z + 2] = '\0'; 
-            printf("\n$%s\t%s$\t", stk, str); 
-            i = i - 2; 
-        } 
-        break;
-          
-    }
+     for(z=0;stk[z]!='\0'; z++)
+     if(stk[z]=='F'||stk[z]=='T')
+     check();
      
     
    
@@ -166,4 +171,3 @@ int main()
 	else //else reject 
 		printf("Reject\n"); 
 } 
-
