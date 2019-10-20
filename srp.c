@@ -11,7 +11,24 @@ char str[16], ac[20], stk[15], act[10];
 
 
 void check() 
-{ strcpy(ac,"REDUCE TO E -> ");   
+
+{strcpy(ac,"REDUCE TO T -> "); 
+      for(z=0; z<c-2; z++) 
+    { 
+         
+        if(stk[z] == 'T' && stk[z + 1] == '*' &&  
+                                stk[z + 2] == 'F')  
+        { 
+            printf("%sT*F", ac); 
+            stk[z]='T'; 
+            stk[z + 1]='\0'; 
+            stk[z + 2]='\0'; 
+            printf("\n$%s\t%s$\t", stk, str); 
+            i = i - 2; 
+        } 
+        
+    } 
+    strcpy(ac,"REDUCE TO E -> ");   
     for(z = 0; z < c - 2; z++) 
     { 
         //checking for another production 
@@ -28,11 +45,13 @@ void check()
         
           
     }
-     
+    
+	
+     strcpy(ac,"REDUCE TO E -> ");  
 	  for(z = 0; z < c; z++)  
     { 
         //checking for producing rule E->4 
-        if(stk[z] == 'T')  
+        if(stk[z] == 'T'&&stk[z+1]!='*')  
         { 
             printf("%sT", ac); 
             stk[z] = 'E'; 
@@ -44,23 +63,7 @@ void check()
         } 
     } 
      
-    strcpy(ac,"REDUCE TO T -> "); 
-      for(z=0; z<c-2; z++) 
-    { 
-         
-        if(stk[z] == 'T' && stk[z + 1] == '*' &&  
-                                stk[z + 2] == 'F')  
-        { 
-            printf("%sT*F", ac); 
-            stk[z]='T'; 
-            stk[z + 1]='\0'; 
-            stk[z + 2]='\0'; 
-            printf("\n$%s\t%s$\t", stk, str); 
-            i = i - 2; 
-        } 
-        
-    } 
-	
+        strcpy(ac,"REDUCE TO T -> "); 
       for(z = 0; z < c; z++)  
     { 
        
@@ -110,7 +113,7 @@ void check()
         
     }   
      for(z=0;stk[z]!='\0'; z++)
-     if(stk[z]=='F'||stk[z]=='T')
+     if(stk[z]=='F')
      check();
      
     
